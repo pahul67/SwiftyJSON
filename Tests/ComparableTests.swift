@@ -310,7 +310,7 @@ class ComparableTests: XCTestCase {
     }
     
     func testArray() {
-        let jsonL1:JSON = [1,2,"4",5,"6"]
+        let jsonL1:JSON = [1 as AnyObject,2,"4",5,"6"]
         let jsonR1:JSON = JSON([1,2,"4",5,"6"])
         XCTAssertEqual(jsonL1, jsonR1)
         XCTAssertTrue(jsonL1 == [1,2,"4",5,"6"])
@@ -323,7 +323,7 @@ class ComparableTests: XCTestCase {
     }
     
     func testDictionary() {
-        let jsonL1:JSON = ["2": 2, "name": "Jack", "List": ["a", 1.09, NSNull()]]
+        let jsonL1:JSON = ["2": 2 as AnyObject, "name": "Jack", "List": ["a", 1.09, NSNull()]]
         let jsonR1:JSON = JSON(["2": 2, "name": "Jack", "List": ["a", 1.09, NSNull()]])
         
         XCTAssertEqual(jsonL1, jsonR1)

@@ -26,7 +26,7 @@ import SwiftyJSON
 class SubscriptTests: XCTestCase {
 
     func testArrayAllNumber() {
-        var json:JSON = [1,2.0,3.3,123456789,987654321.123456789]
+        var json:JSON = [1 as AnyObject,2.0 as AnyObject,3.3,123456789,987654321.123456789]
         XCTAssertTrue(json == [1,2.0,3.3,123456789,987654321.123456789])
         XCTAssertTrue(json[0] == 1)
         XCTAssertEqual(json[1].double!, 2.0)
@@ -48,7 +48,7 @@ class SubscriptTests: XCTestCase {
     }
     
     func testArrayAllBool() {
-        var json:JSON = [true, false, false, true, true]
+        var json:JSON = [true as AnyObject, false, false, true, true]
         XCTAssertTrue(json == [true, false, false, true, true])
         XCTAssertTrue(json[0] == true)
         XCTAssertTrue(json[1] == false)
@@ -108,7 +108,7 @@ class SubscriptTests: XCTestCase {
     }
     
     func testDictionaryAllNumber() {
-        var json:JSON = ["double":1.11111, "int":987654321]
+        var json:JSON = ["double":1.11111 as AnyObject, "int":987654321]
         XCTAssertEqual(json["double"].double!, 1.11111)
         XCTAssertTrue(json["int"] == 987654321)
         
@@ -121,7 +121,7 @@ class SubscriptTests: XCTestCase {
     }
     
     func testDictionaryAllBool() {
-        var json:JSON = ["t":true, "f":false, "false":false, "tr":true, "true":true]
+        var json:JSON = ["t":true as AnyObject, "f":false, "false":false, "tr":true, "true":true]
         XCTAssertTrue(json["t"] == true)
         XCTAssertTrue(json["f"] == false)
         XCTAssertTrue(json["false"] == false)
@@ -204,7 +204,7 @@ class SubscriptTests: XCTestCase {
     }
     
     func testErrorNotExist() {
-        let json:JSON = ["name":"NAME", "age":15]
+        let json:JSON = ["name":"NAME" as AnyObject, "age":15]
         XCTAssertEqual(json["Type"], JSON.null)
         XCTAssertEqual(json["Type"].error!.code, ErrorNotExist)
         XCTAssertEqual(json["Type"][1].error!.code, ErrorNotExist)
@@ -228,7 +228,7 @@ class SubscriptTests: XCTestCase {
         XCTAssertEqual(json[0, 0, 0, 0, "num"].null!, NSNull())
         json[0, 0, 0, 0, "num"] = 100.009
         XCTAssertEqual(json[0][0][0][0]["num"].doubleValue, 100.009)
-        json[[0, 0, 0, 0]] = ["name":"Jack"]
+        json[[0, 0, 0, 0]] = ["name":"Jack" as AnyObject]
         XCTAssertEqual(json[0,0,0,0,"name"].stringValue, "Jack")
         XCTAssertEqual(json[0][0][0][0]["name"].stringValue, "Jack")
         XCTAssertEqual(json[[0,0,0,0,"name"]].stringValue, "Jack")
@@ -251,12 +251,12 @@ class SubscriptTests: XCTestCase {
         XCTAssertEqual(json["user","info","name"], "jim")
         XCTAssertEqual(json["user","info","email"], "jim@hotmail.com")
         XCTAssertEqual(json["user","feeds"], [98833,23443,213239,23232])
-        json["user","info"] = ["name":"tom","email":"tom@qq.com"]
+        json["user","info"] = ["name":"tom" as AnyObject,"email":"tom@qq.com"]
         XCTAssertEqual(json["user","id"], 987654)
         XCTAssertEqual(json["user","info","name"], "tom")
         XCTAssertEqual(json["user","info","email"], "tom@qq.com")
         XCTAssertEqual(json["user","feeds"], [98833,23443,213239,23232])
-        json["user","feeds"] = [77323,2313,4545,323]
+        json["user","feeds"] = [77323 as AnyObject,2313,4545,323]
         XCTAssertEqual(json["user","id"], 987654)
         XCTAssertEqual(json["user","info","name"], "tom")
         XCTAssertEqual(json["user","info","email"], "tom@qq.com")

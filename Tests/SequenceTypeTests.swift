@@ -104,7 +104,7 @@ class SequenceTypeTests: XCTestCase {
         for (i, sub) in json {
             XCTAssertEqual(sub, json[index])
             XCTAssertEqual(i, "\(index)")
-            array.append(sub.object)
+            array.append(sub.object as AnyObject)
             index += 1
         }
         XCTAssertEqual(index, 4)
@@ -121,7 +121,7 @@ class SequenceTypeTests: XCTestCase {
         for (i, sub) in json {
             XCTAssertEqual(sub, json[index])
             XCTAssertEqual(i, "\(index)")
-            array.append(sub.object)
+            array.append(sub.object as AnyObject)
             index += 1
         }
         XCTAssertEqual(index, 3)
@@ -133,7 +133,7 @@ class SequenceTypeTests: XCTestCase {
     }
     
     func testDictionaryAllNumber() {
-        var json:JSON = ["double":1.11111, "int":987654321]
+        var json:JSON = ["double":1.11111 as AnyObject, "int":987654321]
         XCTAssertEqual(json.count, 2)
         
         var index = 0
@@ -188,7 +188,7 @@ class SequenceTypeTests: XCTestCase {
         XCTAssertEqual(json.count, 4)
         
         var index = 0
-        var dictionary = [String:AnyObject]()
+        var dictionary = [String:Any]()
         for (key, sub) in json {
             XCTAssertEqual(sub, json[key])
             dictionary[key] = sub.object
@@ -207,7 +207,7 @@ class SequenceTypeTests: XCTestCase {
         XCTAssertEqual(json.count, 3)
         
         var index = 0
-        var dictionary = [String:AnyObject]()
+        var dictionary = [String:Any]()
         for (key, sub) in json {
             XCTAssertEqual(sub, json[key])
             dictionary[key] = sub.object
